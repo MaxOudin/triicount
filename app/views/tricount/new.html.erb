@@ -1,1 +1,11 @@
-<h2> New Tricount</h2>
+<h2>New Tricount</h2>
+
+<%= simple_form_for @tricount do |f| %>
+  <%= f.input :title, label: 'Triicount title' %>
+  <%= f.input :description, label: 'Triicount description' %>
+
+  <!-- Champ pour les participants avec le modèle participant -->
+  <%= f.input :participants, label: 'Participants', input_html: { value: @tricount.participants.map(&:name).join(', ') } %>
+
+  <%= f.button :submit %>
+<% end %>
