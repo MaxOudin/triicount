@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :users do
-    resources :tricounts
+    resources :tricounts do
+      resources :expenses
+    end
   end
 end
