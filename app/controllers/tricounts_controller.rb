@@ -20,6 +20,10 @@ class TricountsController < ApplicationController
     end
   end
 
+  def show
+    @tricount = Tricount.find(params[:id])
+  end
+
   private
 
   def find_user_id
@@ -27,6 +31,6 @@ class TricountsController < ApplicationController
   end
 
   def tricount_params
-    params.require(:tricount).permit(:user, :title, :description, :user_id)
+    params.require(:tricount).permit(:user, :title, :description, :user_id, :id)
   end
 end
