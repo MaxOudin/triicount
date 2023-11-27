@@ -1,6 +1,6 @@
 <h2>New Tricount</h2>
 
-<%= simple_form_for [@user, @tricount], url: new_user_tricount_path(@user) do |f| %>
+<%= simple_form_for [@user, @tricount], url: user_tricounts_path(@user) do |f| %>
   <%= f.input :title, label: 'Triicount title' %>
   <%= f.input :description, label: 'Triicount description' %>
 

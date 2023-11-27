@@ -1,6 +1,10 @@
-class TricountController < ApplicationController
+class TricountsController < ApplicationController
   before_action :find_user_id
   before_action :authenticate_user!
+
+  def index
+    @tricounts = Tricount.all
+  end
 
   def new
     @tricount = Tricount.new
@@ -10,7 +14,7 @@ class TricountController < ApplicationController
     @tricount = Tricount.new(tricount_params)
     @tricount.user = @user
     if @tricount.save
-      redirect_to tricounts_path(@user), notice: 'Triicount was successfully created.'
+      redirect_to user_tricounts_path(@user), notice: 'Triicount was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -23,6 +27,6 @@ class TricountController < ApplicationController
   end
 
   def tricount_params
-    params.require(:tricount).permit(:user, :title, :description, :participants, :user_id)
+    params.require(:tricount).permit(:user, :title, :description, :user_id)
   end
 end
