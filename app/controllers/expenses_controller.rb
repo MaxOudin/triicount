@@ -4,4 +4,8 @@ class ExpensesController < ApplicationController
     @expenses = Expense.all
   end
 
+  def method_name
+    
+  end
+
 end

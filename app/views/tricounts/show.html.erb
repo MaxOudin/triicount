@@ -1,3 +1,5 @@
 <h2>Show tricount</h2>
 
 <%= @tricount.title %>
+
+<%= link_to 'Dépenses', user_tricount_expenses_path(user_id: @tricount.user, tricount_id: @tricount.id) %>
