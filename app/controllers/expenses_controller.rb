@@ -13,7 +13,7 @@ class ExpensesController < ApplicationController
     @expense = Expense.new(expense_params)
     @expense.tricount_id = @tricount.id
     if @expense.save
-      redirect_to user_tricounts_path(@tricount), notice: 'Expense was successfully created.'
+      redirect_to user_tricount_path(@tricount.user, @tricount), notice: 'Expense was successfully created.'
     else
       flash[:alert] = 'Expense could not be created'
       render :new, status: :unprocessable_entity
@@ -24,12 +24,6 @@ class ExpensesController < ApplicationController
 
   def find_tricount_id
     @tricount = Tricount.find_by(id: params[:tricount_id])
-    @user = @tricount.user
-
-    unless @tricount
-      flash[:alert] = 'Tricount not found'
-      redirect_to root_path
-    end
   end
 
   def expense_params

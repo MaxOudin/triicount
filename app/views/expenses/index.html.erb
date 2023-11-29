@@ -3,10 +3,12 @@
 <%= link_to 'Ajouter dépense', new_user_tricount_expense_path(user_id: @tricount.user, tricount_id: @tricount) %>
 
 
-<%= @expenses.each do |expense| %>
+<% @expenses.each do |expense| %>
 
+<div>
   <%= expense.title %>
   <%= expense.description %>
-  <%# <%= expense.amount_cents/100 %> euros
+  
+</div>
 
 <% end %>
