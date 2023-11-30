@@ -1,7 +1,7 @@
 class CreateParticipants < ActiveRecord::Migration[7.0]
   def change
     create_table :participants do |t|
-      t.references :tricounts, null: false, foreign_key: true
+      t.references :tricount, null: false, foreign_key: true
 
       t.timestamps
     end

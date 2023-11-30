@@ -4,6 +4,11 @@
   <%= f.input :title, label: 'Triicount title' %>
   <%= f.input :description, label: 'Triicount description' %>
 
-  <!-- Champ pour les participants avec le modèle participant -->
+    <!-- Participants fields -->
+    <%= f.fields_for :participants do |participant_form| %>
+      <%= participant_form.label :name, label: 'Participant Name' %>
+      <%= participant_form.text_field :name %>
+    <% end %>
+
   <%= f.button :submit %>
 <% end %>
