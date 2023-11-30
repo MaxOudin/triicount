@@ -1,3 +1,3 @@
 class Participant < ApplicationRecord
-  belongs_to :tricounts
+  belongs_to :tricount
 end
