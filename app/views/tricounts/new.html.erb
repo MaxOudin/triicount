@@ -4,11 +4,39 @@
   <%= f.input :title, label: 'Triicount title' %>
   <%= f.input :description, label: 'Triicount description' %>
 
-    <!-- Participants fields -->
+  <!-- Participants fields -->
+  <div id="participant-fields">
     <%= f.fields_for :participants do |participant_form| %>
-      <%= participant_form.label :name, label: 'Participant Name' %>
-      <%= participant_form.text_field :name %>
+      <%= participant_form.label :names, label: 'Participant Name' %>
+      <%= participant_form.text_field :names %>
     <% end %>
+  </div>
+
+  <%= button_tag "Add Participant", id: "add-participant", type: "button" %>
 
   <%= f.button :submit %>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    let participantIndex = <%= @tricount.participants.size %> - 1;
+
+    $('#add-participant').on('click', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      participantIndex++;
+
+      const newParticipantFields = $('<div>').append(
+        $('<label>').attr('for', `tricount_participants_attributes_${participantIndex}_name`)
+                   .text('Participant Name'),
+        $('<input>').attr({
+          type: 'text',
+          name: `tricount[participants_attributes][${participantIndex}][name]`,
+          id: `tricount_participants_attributes_${participantIndex}_name`
+        })
+      );
+
+      $('#participant-fields').append(newParticipantFields);
+    });
+  });
+</script>

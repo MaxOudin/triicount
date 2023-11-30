@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_30_132710) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_30_134449) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,6 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_132710) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "names", default: [], array: true
+    t.string "additional_field"
     t.index ["tricount_id"], name: "index_participants_on_tricount_id"
   end
 
