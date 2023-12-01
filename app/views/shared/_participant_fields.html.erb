@@ -1,0 +1,7 @@
+<!-- _participant_fields.html.erb -->
+<div data-participant-target="field" class="participant-field">
+  <%= f.input :names, label: "Participant Name", multiple: true %>
+  <%= button_tag "Remove", data: { action: "participant#removeParticipant" }, type: "button" %>
+  <%= button_tag "Add Participant", data: { action: "participant#addParticipant" }, id: "add-participant", type: "button" %>
+
+</div>

@@ -8,7 +8,7 @@ class TricountsController < ApplicationController
 
   def new
     @tricount = Tricount.new
-    @tricount.participants.build
+    @participant = Participant.new
   end
 
   def create
@@ -23,6 +23,7 @@ class TricountsController < ApplicationController
 
   def show
     @tricount = Tricount.find(params[:id])
+    @participants = @tricount.participants
   end
 
   private
@@ -32,7 +33,7 @@ class TricountsController < ApplicationController
   end
 
   def tricount_params
-    params.require(:tricount).permit(:title, :description, :status, :user_id,
-      participants_attributes: [:id, :_destroy, :other_attributes])
+    params.require(:tricount).permit(:title, :description, :status, :user_id, participant_attributes: [:names])
   end
+
 end
