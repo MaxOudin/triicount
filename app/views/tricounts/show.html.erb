@@ -2,6 +2,19 @@
 
 <%= @tricount.title %>
 
-<%= link_to 'Voir dépenses', user_tricount_expenses_path(user_id: @tricount.user, tricount_id: @tricount) %>
 
-<%= @tricount.participants %>
+<p>Participants au tricount: </p>
+
+<ul>
+
+  <% @participants.each do |participant| %>
+    <% participant.names.each do |p| %>
+      <li>
+        <%= p %>
+      </li>
+    <% end %>
+  <% end %>
+
+</ul>
+
+<%= link_to 'Voir dépenses', user_tricount_expenses_path(user_id: @tricount.user, tricount_id: @tricount) %>

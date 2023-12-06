@@ -6,10 +6,10 @@
 
   <!-- Participant fields -->
   <div id="participant-fields" data-controller="participant">
-    <%= f.simple_fields_for :participant do |participant_form| %>
+    <%= f.simple_fields_for :participants do |participant_form| %>
       <%= render 'shared/participant_fields', f: participant_form %>
     <% end %>
   </div>
-  
-  <%= f.button :submit, type: "button" %>
+
+  <%= f.button :submit, type: "submit" %>
 <% end %>

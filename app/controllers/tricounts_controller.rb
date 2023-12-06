@@ -8,12 +8,20 @@ class TricountsController < ApplicationController
 
   def new
     @tricount = Tricount.new
+    # Build an empty participant to be rendered in the form
     @participant = Participant.new
   end
 
   def create
     @tricount = Tricount.new(tricount_params)
     @tricount.user = @user
+
+    # Note: Check if participants_attributes is present in tricount_params
+    if tricount_params[:participant_attributes].present?
+      # Create participants from the nested attributes
+      Participant.create(tricount_params[:participant_attributes]['0'])
+    end
+
     if @tricount.save
       redirect_to user_tricounts_path(@user), notice: 'Triicount was successfully created.'
     else
@@ -23,7 +31,7 @@ class TricountsController < ApplicationController
 
   def show
     @tricount = Tricount.find(params[:id])
-    @participants = @tricount.participants
+    @participants = Participant.where(tricount_id: @tricount.id)
   end
 
   private
