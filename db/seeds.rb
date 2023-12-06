@@ -16,3 +16,40 @@ max = User.new(
 max.save
 
 puts "user created"
+
+Expense.destroy_all
+Participant.destroy_all
+Tricount.destroy_all
+
+puts "Everything destroyed"
+
+tricount = Tricount.new(
+  title: "Trip to the moon",
+  description: "We are going to the moon",
+  user: max)
+
+tricount.save
+
+puts "Tricount created"
+
+participant = Participant.new(
+  names: ["Maxime", "Johnny", "Lucien", "Capucine"],
+  tricount: tricount)
+  
+participant.save
+
+puts "Participant created"
+
+expense = Expense.new(
+  title: "Space ship",
+  description: "We need a space ship to go to the moon",
+  amount_cents: 10000,
+  payer: "Maxime",
+  tricount: tricount,
+  debtors: ["Maxime", "Johnny", "Lucien", "Capucine"])
+
+expense.save
+
+puts "Expense created"
+
+puts "Everything is created"

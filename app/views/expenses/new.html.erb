@@ -6,8 +6,8 @@
   <%= f.input :title, label: 'Expense title' %>
   <%= f.input :description, label: 'Expense description' %>
   <%= f.input :amount_cents, label: 'Expense amount' %>
-  <%= f.input :payer, label: 'Expense payer', collection: @participant[:names] %>
-  <%= f.input :debtors, label: 'Expense debtors', multiple: true, collection: @participant[:names] %>
+  <%= f.input :payer, label: 'Expense payer', collection: @participant.names %>
+  <%= f.input :debtors, label: 'Expense debtors', multiple: true, collection: @participant.names, input_html: { multiple: true } %>
 
   <%= f.button :submit, type: "submit" %>
 <% end %>

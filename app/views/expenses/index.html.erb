@@ -9,6 +9,11 @@
   <%= expense.title %>
   <%= expense.description %>
   <p> <%= expense.amount_cents.fdiv(100) %>  euros</p>
+  <%= expense.payer %>
+  <p>pour : </p>
+  <% expense.debtors.reject(&:empty?).each do |debtor| %>
+    <%= debtor %>
+  <% end %>
 
 </div>
 
