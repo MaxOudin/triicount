@@ -8,7 +8,8 @@
 <div>
   <%= expense.title %>
   <%= expense.description %>
-  
+  <p> <%= expense.amount_cents.fdiv(100) %>  euros</p>
+
 </div>
 
 <% end %>

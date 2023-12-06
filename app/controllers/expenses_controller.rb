@@ -7,6 +7,7 @@ class ExpensesController < ApplicationController
 
   def new
     @expense = Expense.new
+    @participant = Participant.find_by(tricount_id: @tricount.id)
   end
 
   def create

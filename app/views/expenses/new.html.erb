@@ -1,11 +1,13 @@
 <h2>New Expense</h2>
 
 
-<%= simple_form_for [@tricount.user, @tricount, @expense] do |f| %>
+<!-- Expense form -->
+<%= simple_form_for [@tricount.user, @tricount, @expense], url: user_tricount_expenses_path(@tricount.user, @tricount) do |f| %>
   <%= f.input :title, label: 'Expense title' %>
   <%= f.input :description, label: 'Expense description' %>
+  <%= f.input :amount_cents, label: 'Expense amount' %>
+  <%= f.input :payer, label: 'Expense payer', collection: @participant[:names] %>
+  <%= f.input :debtors, label: 'Expense debtors', multiple: true, collection: @participant[:names] %>
 
-  <%# <%= f.input :amount_cents, label: 'Expense amount in euros' %>
-
-  <%= f.button :submit %>
+  <%= f.button :submit, type: "submit" %>
 <% end %>
