@@ -2,19 +2,16 @@
 
 <%= link_to 'Ajouter dépense', new_user_tricount_expense_path(user_id: @tricount.user, tricount_id: @tricount) %>
 
-
-<% @expenses.each do |expense| %>
-
-<div>
-  <%= expense.title %>
-  <%= expense.description %>
-  <p> <%= expense.amount_cents.fdiv(100) %>  euros</p>
-  <%= expense.payer %>
-  <p>pour : </p>
-  <% expense.debtors.reject(&:empty?).each do |debtor| %>
-    <%= debtor %>
+<div class= "my-3">
+  <% @expenses.each do |expense| %>
+    <div>
+      <%= expense.title %>
+      <%= expense.description %>
+      <p> <%= expense.amount_cents.fdiv(100) %>  euros</p>
+      <p><%= expense.payer %> a payé pour :</p>
+      <% expense.debtors.reject(&:empty?).each_with_index do |debtor, index| %>
+        <%= debtor %><%= ',' unless index == expense.debtors.reject(&:empty?).size - 1 %>
+      <% end %>
+    </div>
   <% end %>
-
 </div>
-
-<% end %>

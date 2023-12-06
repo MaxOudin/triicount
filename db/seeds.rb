@@ -26,7 +26,7 @@ puts "Everything destroyed"
 tricount = Tricount.new(
   title: "Trip to the moon",
   description: "We are going to the moon",
-  user: max)
+  user_id: 1)
 
 tricount.save
 
@@ -35,7 +35,7 @@ puts "Tricount created"
 participant = Participant.new(
   names: ["Maxime", "Johnny", "Lucien", "Capucine"],
   tricount: tricount)
-  
+
 participant.save
 
 puts "Participant created"
