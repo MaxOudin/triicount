@@ -8,7 +8,7 @@ class TricountsController < ApplicationController
 
   def new
     @tricount = Tricount.new
-    @participant = Participant.new(tricount: @tricount, names:[""])
+    @participant = Participant.new(tricount: @tricount, names:[])
   end
 
   def create
