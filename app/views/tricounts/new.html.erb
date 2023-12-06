@@ -1,3 +1,4 @@
+<!-- new.html.erb -->
 <h2>New Tricount</h2>
 
 <%= simple_form_for [@user, @tricount], url: user_tricounts_path(@user) do |f| %>
@@ -6,7 +7,7 @@
 
   <!-- Participant fields -->
   <div id="participant-fields" data-controller="participant">
-    <%= f.simple_fields_for :participants do |participant_form| %>
+    <%= f.simple_fields_for :participant do |participant_form| %>
       <%= render 'shared/participant_fields', f: participant_form %>
     <% end %>
   </div>

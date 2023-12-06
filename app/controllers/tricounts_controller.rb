@@ -8,21 +8,20 @@ class TricountsController < ApplicationController
 
   def new
     @tricount = Tricount.new
-    # Build an empty participant to be rendered in the form
-    @participant = Participant.new
+    @participant = Participant.new(tricount: @tricount, names:[""])
   end
 
   def create
     @tricount = Tricount.new(tricount_params)
+    @participant = Participant.new
     @tricount.user = @user
 
-    # Note: Check if participants_attributes is present in tricount_params
-    if tricount_params[:participant_attributes].present?
-      # Create participants from the nested attributes
-      Participant.create(tricount_params[:participant_attributes]['0'])
-    end
-
     if @tricount.save
+      @participant.tricount = @tricount
+      params[:tricount][:participant_attributes][:names].split(", ").each do |name|
+        @participant.names << name
+      end
+      @participant.save
       redirect_to user_tricounts_path(@user), notice: 'Triicount was successfully created.'
     else
       render :new, status: :unprocessable_entity
@@ -41,7 +40,7 @@ class TricountsController < ApplicationController
   end
 
   def tricount_params
-    params.require(:tricount).permit(:title, :description, :status, :user_id, participant_attributes: [:names])
+    params.require(:tricount).permit(:title, :description, :status, participants_attributes: [:names])
   end
 
 end
