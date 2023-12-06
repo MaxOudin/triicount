@@ -5,7 +5,7 @@
 
 <div class="my-3">
   <h3><%= @tricount.title %> </h3>
-  
+
   <% balances = @tricount.calculate_balances %>
 
     <p>Participants au tricount: </p>
@@ -20,8 +20,9 @@
       <div class="mx-2">
         <p>
           <%= expense.payer.capitalize %>
-          a réglé <% total_amount += expense.amount_cents %>
+          a réglé <%= expense.amount_cents / 100 %> euros
           pour <%= expense.debtors.join(", ") %>
+          <% total_amount += expense.amount_cents %>
         </p>
       </div>
     <% end %>
