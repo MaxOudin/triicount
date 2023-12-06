@@ -1,21 +1,41 @@
+
 <h2>Show tricount</h2>
 
 <%= link_to 'Voir dépenses', user_tricount_expenses_path(user_id: @tricount.user, tricount_id: @tricount) %>
 
-<div class= "my-3">
-  <%= @tricount.title %>
+<div class="my-3">
+  <h3><%= @tricount.title %> </h3>
+  
+  <% balances = @tricount.calculate_balances %>
 
-  <p>Participants au tricount: </p>
+    <p>Participants au tricount: </p>
 
-  <ul>
-
-    <% @participants.each do |participant| %>
-      <% participant.names.each do |p| %>
-        <li>
-          <%= p %>
-        </li>
+      <% @participants.each do |participant| %>
+          <%= participant.names.join(', ') %>
       <% end %>
-    <% end %>
 
+  <div class="bg-secondary text-white">
+    <% total_amount = 0 %>
+    <% @tricount.expenses.each do |expense| %>
+      <div class="mx-2">
+        <p>
+          <%= expense.payer.capitalize %>
+          a réglé <% total_amount += expense.amount_cents %>
+          pour <%= expense.debtors.join(", ") %>
+        </p>
+      </div>
+    <% end %>
+    <p> Montant total des dépenses : <%= total_amount / 100 %> euros</p>
+
+  </div>
+
+  <p> Liste des transactions pour équilibrer les comptes :</p>
+  <ul>
+    <% balances[:transactions].each do |transaction| %>
+      <li>
+        <%= transaction[:debtor] %> doit <%= transaction[:amount] / 100 %> à <%= transaction[:creditor] %>
+      </li>
+    <% end %>
   </ul>
+
 </div>

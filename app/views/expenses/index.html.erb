@@ -7,11 +7,18 @@
     <div>
       <%= expense.title %>
       <%= expense.description %>
-      <p> <%= expense.amount_cents.fdiv(100) %>  euros</p>
-      <p><%= expense.payer %> a payé pour :</p>
-      <% expense.debtors.reject(&:empty?).each_with_index do |debtor, index| %>
-        <%= debtor %><%= ',' unless index == expense.debtors.reject(&:empty?).size - 1 %>
-      <% end %>
+
+      <div class="mx-3">
+
+        <p> <%= expense.amount_cents.fdiv(100) %>  euros</p>
+        <p><%= expense.payer %> a payé pour :</p>
+        <% expense.debtors.reject(&:empty?).each_with_index do |debtor, index| %>
+          <%= debtor %><%= ',' unless index == expense.debtors.reject(&:empty?).size - 1 %>
+        <% end %>
+
+      </div>
+
     </div>
+
   <% end %>
 </div>

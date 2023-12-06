@@ -13,8 +13,8 @@ class TricountsController < ApplicationController
 
   def create
     @tricount = Tricount.new(tricount_params)
-    @participant = Participant.new
     @tricount.user = @user
+    @participant = Participant.new
 
     if @tricount.save
       @participant.tricount = @tricount
@@ -31,6 +31,8 @@ class TricountsController < ApplicationController
   def show
     @tricount = Tricount.find(params[:id])
     @participants = Participant.where(tricount_id: @tricount.id)
+    @balance_calculator = BalanceCalculator.new(@tricount)
+    @balances = @balance_calculator.calculate_balances[:balances]
   end
 
   private
